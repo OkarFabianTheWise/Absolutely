@@ -4,15 +4,17 @@ import requests
 import json
 import time
 import threading
+from config import TOKEN, ETHERSCAN_KEY
+
 def background(f):
     def backgrnd_func(*a, **kw):
         threading.Thread(target=f, args=a, kwargs=kw).start()
     return backgrnd_func
-ETHERSCAN_KEY = os.environ.get('ETHERSCAN_KEY')
-BOT_KEY = os.environ.get('BOT_KEY')
+ETHERSCAN_KEY = "FIF4YVRA7Y539512T5V6ANXPTAACVC8HFA"
+TOKEN = "5577718850:AAERXpn4HKx4bFVOXa5gO2cnlhYTq5M-KBo"
 SUBSCRIPTIONS_FILE_PATH = 'subscriptions.json'
 # Create the bot
-bot = telebot.TeleBot(BOT_KEY, parse_mode=None)
+bot = telebot.TeleBot(TOKEN, parse_mode=None)
 subscriptions = {
     # Example of dict structure
     # 'chat_id': {
@@ -111,4 +113,4 @@ def infinity_wallet_updates():
         time.sleep(60*3)
 # Run the bot!
 infinity_wallet_updates()
-bot.infinity_polling()
+bot.infinity_polling(1)
