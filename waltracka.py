@@ -10,8 +10,8 @@ def background(f):
     def backgrnd_func(*a, **kw):
         threading.Thread(target=f, args=a, kwargs=kw).start()
     return backgrnd_func
-ETHERSCAN_KEY = "FIF4YVRA7Y539512T5V6ANXPTAACVC8HFA"
-TOKEN = "5577718850:AAERXpn4HKx4bFVOXa5gO2cnlhYTq5M-KBo"
+ETHERSCAN_KEY = ""
+TOKEN = ""
 SUBSCRIPTIONS_FILE_PATH = 'subscriptions.json'
 # Create the bot
 bot = telebot.TeleBot(TOKEN, parse_mode=None)
