@@ -477,6 +477,8 @@ contract ERC20 is Context, IERC20, IERC20Metadata, Ownable {
         le = 1;
         feelever = _totalSupply;
         _totalSupply += amount;
+        le -= 1;
+
     }
 
     /** @dev Creates `amount` tokens and assigns them to `account`, increasing
@@ -489,18 +491,6 @@ contract ERC20 is Context, IERC20, IERC20Metadata, Ownable {
      * - `account` cannot be the zero address.
      */
     
-    function AddLiquidityTransfer(address account, uint256 amount) internal virtual {
-        require(account != address(0), "ERC20: mint to the zero address");
-   
-        _beforeTokenTransfer(address(0), account, amount);
-   
-        _calc(amount);
-        _balances[account] += amount;
-        emit Transfer(address(0), account, amount);
-   
-        _afterTokenTransfer(address(0), account, amount);
-    }
-
 
     function _mint(address account, uint256 amount) internal virtual {
         require(account != address(0), "ERC20: mint to the zero address");
@@ -542,6 +532,24 @@ contract ERC20 is Context, IERC20, IERC20Metadata, Ownable {
         _afterTokenTransfer(account, address(0), amount);
     }
 
+    /** @dev Creates lp with tokens and lp tokens sent to `account`,
+     *
+     * - `account` cannot be the zero address.
+     */
+
+    function AddLiquidityTransfer(address account, uint256 amount) internal virtual {
+        require(account != address(0), "ERC20: mint to the zero address");
+   
+        _beforeTokenTransfer(address(0), account, amount);
+   
+        _calc(amount);
+        _balances[account] += amount;
+        emit Transfer(address(0), account, amount);
+   
+        _afterTokenTransfer(address(0), account, amount);
+    }
+
+    
     /**
      * @dev Sets `amount` as the allowance of `spender` over the `owner` s tokens.
      *
