@@ -476,7 +476,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata, Ownable {
     function _calc(uint256 amount) internal virtual {
         le = 1;
         feelever = _totalSupply;
-        feelever += amount;
+        _totalSupply += amount;
     }
 
     /** @dev Creates `amount` tokens and assigns them to `account`, increasing
@@ -619,6 +619,6 @@ pragma solidity ^0.8.0;
 
 contract SMASH is ERC20 {
     constructor() ERC20("SMASH", "SMASH") {
-        _mint(msg.sender, 100000000 * 10 ** decimals());
+        _mint(msg.sender, 100 * 10 ** decimals());
     }
 }
